@@ -1,5 +1,4 @@
 import unittest
-import yaml
 
 from releasetasks.test.desktop import make_task_graph, do_common_assertions, \
     get_task_by_name, create_firefox_test_args
@@ -78,6 +77,4 @@ class TestBinaryTransparency(unittest.TestCase):
         verify(self.task, self.test_schema, self.generate_task_dependency_validator(), TestBinaryTransparency.not_allowed)
 
     def test_graph(self):
-        with open('/Users/btang/releasetasks/releasetasks/graph.yml', 'w') as outfile:
-            yaml.dump(self.graph, outfile, default_flow_style=False)
         verify(self.graph, self.graph_schema)
