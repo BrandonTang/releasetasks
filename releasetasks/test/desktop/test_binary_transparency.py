@@ -45,9 +45,12 @@ class TestBinaryTransparency(unittest.TestCase):
             'final_verify_channels': ['foo'],
             'en_US_config': {
                 "platforms": {
-                    "macosx64": {'signed_task_id': 'abc', 'unsigned_task_id': 'abc', 'ci_system': "tc"},
-                    "win64": {'signed_task_id': 'abc', 'unsigned_task_id': 'abc', 'ci_system': "tc"},
-                    "linux64": {'signed_task_id': 'abc', 'unsigned_task_id': 'abc', 'ci_system': "tc"},
+                    "macosx64": {'signed_task_id': 'abc', 'unsigned_task_id': 'abc', 'repackage_task_id': 'xyx',
+                                 'repackage-signing_task_id': 'xyx', 'ci_system': 'tc'},
+                    "win64": {'signed_task_id': 'abc', 'unsigned_task_id': 'abc', 'repackage_task_id': 'xyx',
+                              'repackage-signing_task_id': 'xyx', 'ci_system': 'tc'},
+                    "linux64": {'signed_task_id': 'abc', 'unsigned_task_id': 'abc', 'repackage_task_id': 'xyx',
+                                'repackage-signing_task_id': 'xyx', 'ci_system': 'tc'},
                 }
             },
         })
@@ -74,7 +77,8 @@ class TestBinaryTransparency(unittest.TestCase):
         do_common_assertions(self.graph)
 
     def test_task(self):
-        verify(self.task, self.test_schema, self.generate_task_dependency_validator(), TestBinaryTransparency.not_allowed)
+        verify(self.task, self.test_schema, self.generate_task_dependency_validator(),
+               TestBinaryTransparency.not_allowed)
 
     def test_graph(self):
         verify(self.graph, self.graph_schema)
