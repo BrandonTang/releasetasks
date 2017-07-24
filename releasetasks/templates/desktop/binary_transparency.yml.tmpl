@@ -2,7 +2,7 @@
 -
     taskId: "{{ stableSlugId(buildername) }}"
     requires:
-        - "{{ stableSlugId('release-foo-{}_chcksms'.format(product)) }}"
+        - "{{ stableSlugId('release-{}-{}_chcksms'.format(branch, product)) }}"
     reruns: 5
     task:
         provisionerId: "scriptworker-prov-v1"
